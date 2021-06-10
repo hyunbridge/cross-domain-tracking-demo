@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cookie": "^0.4.1"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.4.0",
+    "@vercel/node": "^1.11.0"
+  }
+}

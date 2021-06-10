@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cross Domain Tracking Demo</title>
+  </head>
+
+  <body>
+    <h1>Cross Domain Tracking Demo</h1>
+    <p>당신의 닉네임은: <span id="nickname"></span></p>
+    <p>
+      <button type="button" onclick="refreshNickname()">닉네임 바꾸기!</button>
+    </p>
+    <p>
+      View Source Code:
+      <a
+        href="https://github.com/hyunbridge/cross-domain-tracking-demo"
+        target="_blank"
+        >GitHub</a
+      >
+    </p>
+    <script>
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === xhr.DONE) {
+          const response = JSON.parse(xhr.responseText);
+          document.getElementById("nickname").innerHTML = response.nickname;
+        }
+      };
+      xhr.open(
+        "GET",
+        `https://cross-domain-tracking-demo.vercel.app/api/nickname?nocache=${Math.floor(
+          1000 + Math.random() * 9000
+        )}`
+      );
+      xhr.withCredentials = true;
+      xhr.send();
+
+      const refreshNickname = () => {
+        xhr.open(
+          "GET",
+          `https://cross-domain-tracking-demo.vercel.app/api/nickname?nocache=${Math.floor(
+            1000 + Math.random() * 9000
+          )}&refresh`
+        );
+        xhr.withCredentials = true;
+        xhr.send();
+      };
+    </script>
+  </body>
+</html>
