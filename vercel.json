@@ -1,0 +1,12 @@
+{
+  "regions": ["icn"],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "headers": {
+        "X-Powered-By": "HGSEO"
+      },
+      "dest": "/$1"
+    }
+  ]
+}
